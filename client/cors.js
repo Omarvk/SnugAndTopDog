@@ -1,0 +1,1 @@
+allRoutes: true

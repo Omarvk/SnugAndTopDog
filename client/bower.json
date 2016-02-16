@@ -1,0 +1,28 @@
+{
+  "name": "chat",
+  "authors": [
+    "Omarv <omarkval@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.js",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-bootstrap": "^1.1.2",
+    "angular-animate": "^1.5.0"
+  },
+  "devDependencies": {
+    "angular-route": "^1.5.0",
+    "socket.io-client": "^1.4.5",
+    "cors": "*"
+  }
+}

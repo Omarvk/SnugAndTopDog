@@ -1,0 +1,23 @@
+<h2>Login</h2>
+<div>
+	<div class="row">
+		<div class="col-xs-12">
+			<label>User Name:</label>
+			<input type="text" ng-model="user" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<button ng-click='onToRegsiter()'>New Account</button>
+			<button ng-click="onLogin()">Submit</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			{{errorMsg}}
+		</div>
+	</div>
+
+</div>
+
+
