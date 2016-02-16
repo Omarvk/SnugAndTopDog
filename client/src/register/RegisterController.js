@@ -14,17 +14,7 @@ function RegisterController ($scope, $location, ChatResource) {
 			}
 		});
 	}
-	/*var socket;
-	var getSocket = function(sock){
-		$scope.$apply(function(){
-			socket = sock;
-		});
-	}
-	Socket.connect(getSocket);*/
 	$scope.onRegister = function onRegister() {
-		//$scope.errorMsg = "wata";
-
-	
 		console.log($scope.user);
 		ChatResource.addUser($scope.user, RegisterUserOrLogin);
 	};

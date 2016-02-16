@@ -16,7 +16,7 @@ function Socket(){
 }); */
 angular.module("chatApp").factory("ChatResource",
 function ChatResource ($rootScope) {
-	var socket = $rootScope.socket;
+	var socket = io.connect('http://localhost:8080');// $rootScope.socket;
 	return {
 		login: function login(user, callback) {
 			socket.emit("login", user, function(available){
@@ -33,22 +33,15 @@ function ChatResource ($rootScope) {
 			});
 		},
 		addUser: function addUser(user, fun){
-			//this.connect();
-			//var socket = io.connect('http://localhost:8080'); 
+			console.log(user);
 			socket.emit("adduser", user, function(available){
-				/*if(available){
-					//alert("YEAH");
-					
-				}else{
-					//alert("NOOO");
-				}*/
 				fun(available);
 			});
 		},
-		createRoom: function createRoom(obj){
+		createRoom: function createRoom(obj, fun){
 			var data = {};
 			socket.emit("joinroom", obj, function(available, Reason){
-
+				fun(available, Reason);
 			});
 			socket.on("updateusers", function(room, users, ops) {
 				data.room = room;
@@ -90,6 +83,14 @@ function ChatResource ($rootScope) {
 			});
 			socket.on('servermessage', function(join, room, user){
 				data.join = join;
+				fun(data);
+			});
+		},
+		sendMsg: function sendMsg(msgs, fun){
+			var data = {};
+			socket.emit("sendmsg", msgs);
+			socket.on("updatechat", function(room, msgHistory){
+				data.msgHistory = msgHistory;
 				fun(data);
 			});
 		}

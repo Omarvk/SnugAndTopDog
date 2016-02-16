@@ -1,10 +1,19 @@
 "use strict";
 
 angular.module("chatApp").controller("CreateRoomController",
-["$scope", "ChatResource",
-function CreateRoomController($scope, ChatResource) {
-	$scope.createRoom = function createRoom(){
+["$scope", "$location", "ChatResource",
+function CreateRoomController($scope, $location, ChatResource) {
+	var funToBeCalledWhenCreateRoom = function(sucess, reason){
+		$scope.$apply(function(){
+			if(sucess){
+				$location.path("/room/"+$scope.room);
+			}else{
+				$erroMsg(reason);
+			}
+		});
+	}
+	$scope.onCreateRoom = function onCreateRoom(){
 		var obj = {room: $scope.room, pass: $scope.pw };
-		ChatResource.createRoom(obj);
+		ChatResource.createRoom(obj, funToBeCalledWhenCreateRoom);
 	};
 }]);

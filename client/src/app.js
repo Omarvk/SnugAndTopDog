@@ -1,8 +1,5 @@
 "use strict";
 
-//var cors = require("../cors");
-//var app = express();
-
 angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routeProvider) {
 	$routeProvider
 	.when("/", {
@@ -24,12 +21,18 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routePro
 	
 });
 
-
-
-angular.module("chatApp").run(function($rootScope) {
+angular.module("chatApp").run(function($rootScope, ChatResource) {
 	$rootScope.socket = io.connect('http://localhost:8080');
+	var user = "Kalli";
+	var hello = function(success){
+		if(success){
+			console.log("login");
+		}else{
+			console.log("new user plz");
+		}
+	}
+	ChatResource.addUser(user, hello);
 });
 
-//app.use(cors());
 //https://angular-ui.github.io/bootstrap/
 

@@ -15,7 +15,6 @@ function LoginController ($scope, $location, ChatResource) {
 				$scope.errorMsg = "submit fails";
 			} else {
 				$scope.errorMsg = "tókst";
-				//$location("/roomlist");
 			}
 		});
 	};

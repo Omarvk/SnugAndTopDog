@@ -16,7 +16,6 @@ function RoomlistController($scope, $location, ChatResource) {
 					cId++;
 				}				
 			}
-			//$scope.roomlist = roomlist.name;
 		});
 		
 	}
@@ -24,13 +23,6 @@ function RoomlistController($scope, $location, ChatResource) {
 		$location.path("/createroom")
 	};
 	ChatResource.getRoomList(funcToBeCalledWhenRoomlistChanges);
-	/*$scope.roomlist = [ {
-		id: 1,
-		name: "Spjall um watever"
-	},{
-		id: 2,
-		name: "mammian"
-	}]; */
 }]);
 
 
