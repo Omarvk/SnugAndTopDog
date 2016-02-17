@@ -68,7 +68,7 @@ hr {
 }
 
 .userList {
-  height: 447px;
+  height: 486px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
