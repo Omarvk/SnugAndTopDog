@@ -56,7 +56,7 @@ function ChatResource ($rootScope) {
 		},
 		leaveRoom: function leaveRoom(room, fun) {
 			socket.emit("partroom", room);
-			this.on(fun);
+			fun();
 		}
 
 	};

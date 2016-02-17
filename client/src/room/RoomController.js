@@ -7,7 +7,15 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	var obj = {room: $scope.name};
 	var checkJoined = false;
 	ChatResource.on("updateusers", function(room, users, ops){
-		$scope.users = users;
+		var ob = {};
+		var iD = 1;
+		$scope.users = [];
+		for(var user in users) {
+			ob = {id: iD, name: user };
+			$scope.users.push(ob);
+			iD++;
+		}
+		$scope.selectedUser = 1;
 	});
 	ChatResource.on("updatechat", function(room, msgHistory){
 		console.log("listen");
@@ -29,19 +37,14 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	var funcToBeCalledWhenRoomIsJoined = function() {
 		checkJoined = true;
 	}
-	var funToBeCalledWhenRoomIsCreated = function(room) {
+	var funToBeCalledWhenRoomIsCreated = function() {
 
 	}
-	var funToBeCalledWhenMsgIsSend = function(room) {
+	var funToBeCalledWhenMsgIsSend = function() {
 		$scope.newMsg = "";
 	}
-	var funToBeCalledWhenUserLeaveRoom = function(room) {
-		$scope.$apply(function(){
-			//$scope.users = room.users;
-			//$scope.ops = room.ops;
-			//$scope.msgs.push({timestamp: new Date() ,nick: room.user, message: room.msg+" "+room.room});
-			$location.path("/roomlist");
-		});
+	var funToBeCalledWhenUserLeaveRoom = function() {
+		$location.path("/roomlist");
 	}
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
 	$scope.onSendMsg = function onSendMsg() {

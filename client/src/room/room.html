@@ -8,10 +8,8 @@
 </div>
 <div>
 	<h4>Users in room:</h4>
-	<ul>
-		<li ng-repeat ="user in users">{{user}}</li>
-	</ul>
+	<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" style="width: 150px" size="10">
+	</select>
 	<button ng-click="onLeaveRoom()">Leave</button>
 	<button ng-click="onDisc()">Disconnect</button>
-</div>
-</div>
+</div></div>
