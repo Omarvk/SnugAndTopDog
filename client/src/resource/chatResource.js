@@ -46,7 +46,11 @@ function ChatResource ($rootScope) {
 			});
 		},
 		kick: function kick(data) {
-			
+			socket.emit("kick", data, function(sucess){
+				if(!sucess) {
+					
+				}
+			});
 		},
 		leaveRoom: function leaveRoom(room) {
 			socket.emit("partroom", room);
