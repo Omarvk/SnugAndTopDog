@@ -5,28 +5,42 @@ angular.module("chatApp").controller("RoomController",
 function RoomController($scope, $location, $routeParams, ChatResource) {
 	$scope.name = $routeParams.name;
 	var obj = {room: $scope.name};
-	var funcToBeCalledWhenRoomIsJoined = function(room) {
-		$scope.$apply(function(){
-			$scope.users = room.users;
-			$scope.topic = room.topic;
-			$scope.msgs = room.msgHistory;
-			$scope.msgs.push({timestamp: new Date() ,nick: room.user, message: room.msg+" "+room.room});
-		});
+	var checkJoined = false;
+	ChatResource.on("updateusers", function(room, users, ops){
+		$scope.users = users;
+	});
+	ChatResource.on("updatechat", function(room, msgHistory){
+		console.log("listen");
+		//$scope.msgs = msgHistory;
+		if(checkJoined){
+			$scope.msgs = msgHistory;
+			checkJoined = false;
+		}else{
+			var getMsg = msgHistory[msgHistory.length - 1];
+			$scope.msgs.push({timestamp: getMsg.timestamp ,nick: getMsg.nick, message: getMsg.message});
+		}
+	});
+	ChatResource.on("updatetopic", function(room, topic, user){
+		$scope.topic = topic +" "+ user;
+	});
+	ChatResource.on("servermessage", function(msg, room, user){
+		$scope.msgs.push({timestamp: new Date() ,nick: $scope.name, message: user+" "+msg+" "+room});
+	});
+	var funcToBeCalledWhenRoomIsJoined = function() {
+		checkJoined = true;
 	}
 	var funToBeCalledWhenRoomIsCreated = function(room) {
 
 	}
 	var funToBeCalledWhenMsgIsSend = function(room) {
-		$scope.$apply(function(){
-			$scope.msgs = room.msgHistory;
-		});
+		console.log("send msgs");
+		//$scope.msgs = room.msgHistory;
 	}
 	var funToBeCalledWhenUserLeaveRoom = function(room) {
 		$scope.$apply(function(){
-			$scope.users = room.users;
-			$scope.ops = room.ops;
-			$scope.msgs.push({timestamp: new Date() ,nick: room.user, message: room.msg+" "+room.room});
-			console.log(room.msg+" wata");
+			//$scope.users = room.users;
+			//$scope.ops = room.ops;
+			//$scope.msgs.push({timestamp: new Date() ,nick: room.user, message: room.msg+" "+room.room});
 			$location.path("/roomlist");
 		});
 	}
