@@ -3,9 +3,9 @@
 angular.module("chatApp").controller("LoginController",
 ["$scope", "$location", "ChatResource",
 function LoginController ($scope, $location, ChatResource) {
-	$scope.user = "User Name";
+	//$scope.user = "User Name";
 	$scope.errorMsg = "";
-	$scope.onToRegsiter = function onToRegsiter(){
+	$scope.onToRegister = function onToRegister(){
 		$location.path("/register");
 	};
 	$scope.onLogin = function onLogin() {

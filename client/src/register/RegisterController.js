@@ -3,7 +3,7 @@
 angular.module("chatApp").controller("RegisterController",
 ["$scope", "$location", "ChatResource",
 function RegisterController ($scope, $location, ChatResource) {
-	$scope.user = "User Name";
+	//$scope.user = "User Name";
 	$scope.errorMsg = "";
 	var RegisterUserOrLogin = function(success){
 		$scope.$apply(function(){

@@ -1,21 +1,15 @@
-<h2>Register</h2>
-<div>
-	<div class="row">
-		<div class="col-xs-12">
-			<label>User Name:</label>
-			<input type="text" ng-model="user" />
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<button ng-click="onRegister()">Submit</button>
-		</div>
-	</div>
+<div class="container">
+
+	<form class="form-signin">
+		<h2 class="form-signin-heading">Enter user name</h2>
+		<input type="text" ng-model="user" class="form-control" placeholder="User name" required autofocus>
+		<br />
+		<button class="btn btn btn-primary btn-block" type="submit" ng-click="onRegister()">Register</button>
+	</form>
+
 	<div class="row">
 		<div class="col-xs-12">
 			{{errorMsg}}
 		</div>
 	</div>
-
 </div>
-
