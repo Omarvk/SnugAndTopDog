@@ -62,10 +62,8 @@ function ChatResource ($rootScope) {
 			var data = {};
 			console.log(obj.room);
 			socket.emit("joinroom", obj, function(available, Reason){
-				if(available){
-					console.log("yeah");
-				}else{
-					console.log("noooo " + Reason);
+				if(!available){
+					fun(available, Reason);
 				}
 			});
 			socket.on("updateusers", function(room, users, ops) {
@@ -74,23 +72,37 @@ function ChatResource ($rootScope) {
 				data.ops = ops;
 				
 			});
-			socket.on("updatechat", function(room, msgHistory){
+			socket.on("updatechat", function(room, msgHistory) {
 				data.msgHistory = msgHistory;
 			});
-			socket.on('updatetopic', function(room, topic, user){
+			socket.on('updatetopic', function(room, topic, user) {
 				data.topic = topic;
 				data.user = user;
 			});
-			socket.on('servermessage', function(join, room, user){
-				data.join = join;
+			socket.on('servermessage', function(msg, room, user) {
+				data.msg = msg;
 				fun(data);
 			});
 		},
-		sendMsg: function sendMsg(msgs, fun){
+		sendMsg: function sendMsg(msgs, fun) {
 			var data = {};
 			socket.emit("sendmsg", msgs);
-			socket.on("updatechat", function(room, msgHistory){
+			socket.on("updatechat", function(room, msgHistory) {
 				data.msgHistory = msgHistory;
+				fun(data);
+			});
+		},
+		leaveRoom: function leaveRoom(room, fun) {
+			var data = {};
+			socket.emit("partroom", room);
+			socket.on("updateusers", function(rOOm, users, ops) {
+				data.room = rOOm;
+				data.users = users;
+				data.ops = ops;
+			});
+			socket.on('servermessage', function(msg, room, user) {
+				data.msg = msg;
+				data.user = user;
 				fun(data);
 			});
 		}
