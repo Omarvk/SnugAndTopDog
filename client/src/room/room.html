@@ -7,9 +7,12 @@
 	<input type="text" ng-model="newMsg" /><button ng-click="onSendMsg()">Post Message</button>
 </div>
 <div>
-	<h4>Users in room:</h4>
-	<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" style="width: 150px" size="10">
-	</select>
+	<div>
+		<h4>Users in room:</h4>
+		<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" style="width: 150px" size="10">
+		</select>
+	</div>
+	<button ng-click="onSendPrvMsg()">Send Private Msg</button>
 	<button ng-click="onLeaveRoom()">Leave</button>
 	<button ng-click="onDisc()">Disconnect</button>
 </div></div>
