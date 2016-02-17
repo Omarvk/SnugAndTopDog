@@ -45,6 +45,9 @@ function ChatResource ($rootScope) {
 				}
 			});
 		},
+		kick: function kick(data) {
+			
+		},
 		leaveRoom: function leaveRoom(room) {
 			socket.emit("partroom", room);
 		}
