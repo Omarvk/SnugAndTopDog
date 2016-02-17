@@ -6,8 +6,17 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	$scope.name = $routeParams.name;
 	var obj = {room: $scope.name};
 	var checkJoined = false;
+	$scope.users = [];
 	ChatResource.on("updateusers", function(room, users, ops){
-		$scope.users = users;
+		var ob = {};
+		var iD = 1;
+		$scope.users = [];
+		for(var user in users) {
+			ob = {id: iD, name: user };
+			$scope.users.push(ob);
+			iD++;
+		}
+		$scope.selectedUser = 1;
 	});
 	ChatResource.on("updatechat", function(room, msgHistory){
 		console.log("listen");
@@ -17,7 +26,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 			checkJoined = false;
 		}else{
 			var getMsg = msgHistory[msgHistory.length - 1];
-			$scope.msgs.push({timestamp: getMsg.timestamp ,nick: getMsg.nick, message: getMsg.message});
+			$scope.msgs.push({timestamp: getMsg.timestamp, nick: getMsg.nick, message: getMsg.message});
 		}
 	});
 	ChatResource.on("updatetopic", function(room, topic, user){
@@ -26,32 +35,28 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	ChatResource.on("servermessage", function(msg, room, user){
 		$scope.msgs.push({timestamp: new Date() ,nick: $scope.name, message: user+" "+msg+" "+room});
 	});
+	ChatResource.on("recv_privatemsg", function(user, msg){
+		$scope.msgs.push({timestamp: new Date(), nick: user, message: msg});
+	});
 	var funcToBeCalledWhenRoomIsJoined = function() {
 		checkJoined = true;
-	}
-	var funToBeCalledWhenRoomIsCreated = function(room) {
-
-	}
-	var funToBeCalledWhenMsgIsSend = function(room) {
-		$scope.newMsg = "";
-	}
-	var funToBeCalledWhenUserLeaveRoom = function(room) {
-		$scope.$apply(function(){
-			//$scope.users = room.users;
-			//$scope.ops = room.ops;
-			//$scope.msgs.push({timestamp: new Date() ,nick: room.user, message: room.msg+" "+room.room});
-			$location.path("/roomlist");
-		});
 	}
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
 	$scope.onSendMsg = function onSendMsg() {
 		obj.msg = $scope.newMsg;
 		obj.roomName = $scope.name;
 		console.log(obj.room + " " +obj.msg);
-		ChatResource.sendMsg(obj, funToBeCalledWhenMsgIsSend);
+		ChatResource.sendMsg(obj);
+		$scope.newMsg = "";
+
+	};
+	$scope.onSendPrvMsg = function onSendPrvMsg() {
+		console.log($scope.users[$scope.selectedUser - 1].name + " "+ $scope.newMsg+" "+$scope.selectedUser);
+		ChatResource.sendPrvMsg({nick: $scope.users[$scope.selectedUser - 1].name, message: "PrivateMsg "+$scope.newMsg});
 	};
 	$scope.onLeaveRoom = function onLeaveRoom() {
-		ChatResource.leaveRoom($scope.name, funToBeCalledWhenUserLeaveRoom);
+		ChatResource.leaveRoom($scope.name);
+		$location.path("/roomlist");
 	};
 	$scope.onDisc = function onDisc() {
 

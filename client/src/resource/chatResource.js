@@ -12,12 +12,6 @@ function ChatResource ($rootScope) {
 				});
 			});
 		},
-		login: function login(user, callback) {
-			socket.emit("login", user, function(available){
-
-			});
-
-		},
 		getRoomList: function getRoomList(fun) {
 			socket.emit("rooms");
 			socket.on("roomlist", function(data) {
@@ -35,28 +29,24 @@ function ChatResource ($rootScope) {
 			});
 		},
 		joinRoom: function joinRoom(obj, fun){
-			var data = {};
 			socket.emit("joinroom", obj, function(available, Reason){
-				if(!available){
+				if(!available) {
 					fun(available, Reason);
 				}
 			});
 			fun();
-			//this.on(fun);
-
 		},
-		sendMsg: function sendMsg(msgs, fun) {
-			var data = {};
+		sendMsg: function sendMsg(msgs) {
 			socket.emit("sendmsg", msgs);
-			fun();
-			/*socket.on("updatechat", function(room, msgHistory) {
-				data.msgHistory = msgHistory;
-				fun(data);
-			});*/
 		},
-		leaveRoom: function leaveRoom(room, fun) {
+		sendPrvMsg: function sendPrvMsg(data) {
+			socket.emit("privatemsg", data, function(sucess){
+				if(!sucess) {
+				}
+			});
+		},
+		leaveRoom: function leaveRoom(room) {
 			socket.emit("partroom", room);
-			this.on(fun);
 		}
 
 	};

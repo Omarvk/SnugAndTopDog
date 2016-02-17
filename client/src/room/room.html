@@ -12,10 +12,9 @@
 		<div class="col-md-4">
 			<h4>Users in room:</h4>
 			<div class="userList">
-				<div ng-repeat="user in users">
-					{{user}}
-				</div>
+				<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" size="25"></select>
 			</div>
+			<button ng-click="onSendPrvMsg()">Send Private Msg</button>
 			<button ng-click="onLeaveRoom()">Leave</button>
 			<button ng-click="onDisc()">Disconnect</button>
 		</div>

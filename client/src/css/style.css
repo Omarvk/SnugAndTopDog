@@ -72,3 +72,11 @@ hr {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+select {
+  outline:none;
+  border:0;
+  line-height: 1.2;
+  background: #eee;
+  width: 90%;
+}
