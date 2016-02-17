@@ -1,17 +1,23 @@
 <div class="container">
-<h2>HERBERGI</h2>
-<div>{{name}}</div>
-<div>
-	<p>{{topic}}</p>
-	<p ng-repeat="msg in msgs track by msg.timestamp">{{msg.timestamp | date: "HH:mm"}} - {{msg.nick}}: {{msg.message}}</p>
-	<input type="text" ng-model="newMsg" /><button ng-click="onSendMsg()">Post Message</button>
-</div>
-<div>
-	<h4>Users in room:</h4>
-	<ul>
-		<li ng-repeat ="user in users">{{user}}</li>
-	</ul>
-	<button ng-click="onLeaveRoom()">Leave</button>
-	<button ng-click="onDisc()">Disconnect</button>
-</div>
+	<div class="row">
+		<div class="col-md-4">
+			<h3>{{name}}</h3>
+			<h4>{{topic}}</h4>
+			<hr>
+			<div class="messageList">
+				<p ng-repeat="msg in msgs track by msg.timestamp">{{msg.timestamp | date: "HH:mm"}} - {{msg.nick}}: {{msg.message}}</p>
+			</div>
+			<input ng-model="newMsg" type="text" class="form-control ng-valid ng-dirty" placeholder="Type message" ng-keypress="($event.charCode==13)?onSendMsg():return">
+		</div>
+		<div class="col-md-4">
+			<h4>Users in room:</h4>
+			<div class="userList">
+				<div ng-repeat="user in users">
+					{{user}}
+				</div>
+			</div>
+			<button ng-click="onLeaveRoom()">Leave</button>
+			<button ng-click="onDisc()">Disconnect</button>
+		</div>
+	</div>
 </div>
