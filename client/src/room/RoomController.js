@@ -33,8 +33,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 
 	}
 	var funToBeCalledWhenMsgIsSend = function(room) {
-		console.log("send msgs");
-		//$scope.msgs = room.msgHistory;
+		$scope.newMsg = "";
 	}
 	var funToBeCalledWhenUserLeaveRoom = function(room) {
 		$scope.$apply(function(){
