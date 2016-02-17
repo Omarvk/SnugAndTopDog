@@ -3,9 +3,10 @@
 <div>
 	<p>{{topic}}</p>
 	<p ng-repeat="msg in msgs track by msg.timestamp">{{msg.timestamp | date: "HH:mm"}} - {{msg.nick}}: {{msg.message}}</p>
-	<input type="text" ng-model="newMsg" /><button ng-click="onSendMsg()">SendMsg</button>
+	<input type="text" ng-model="newMsg" /><button ng-click="onSendMsg()">Post Message</button>
 </div>
 <div>
+	<h4>Users in room:</h4>
 	<ul>
 		<li ng-repeat ="user in users">{{user}}</li>
 	</ul>

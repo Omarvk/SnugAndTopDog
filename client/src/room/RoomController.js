@@ -19,6 +19,7 @@ function RoomController($scope, $routeParams, ChatResource) {
 		$scope.$apply(function(){
 			console.log("GET MSG MEN");
 			$scope.msgs = room.msgHistory;
+			$scope.newMsg = "";
 		});
 	}
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
