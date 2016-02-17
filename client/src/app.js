@@ -5,9 +5,6 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routePro
 	.when("/", {
 		templateUrl: "login/login.html",
 		controller: "LoginController"
-	}).when("/register", {
-		templateUrl: "register/register.html",
-		controller: "RegisterController"
 	}).when("/roomlist", {
 		templateUrl: "roomlist/roomlist.html",
 		controller: "RoomlistController"

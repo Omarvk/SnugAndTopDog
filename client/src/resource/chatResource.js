@@ -12,12 +12,6 @@ function ChatResource ($rootScope) {
 				});
 			});
 		},
-		login: function login(user, callback) {
-			socket.emit("login", user, function(available){
-
-			});
-
-		},
 		getRoomList: function getRoomList(fun) {
 			socket.emit("rooms");
 			socket.on("roomlist", function(data) {
@@ -42,8 +36,6 @@ function ChatResource ($rootScope) {
 				}
 			});
 			fun();
-			//this.on(fun);
-
 		},
 		sendMsg: function sendMsg(msgs, fun) {
 			var data = {};

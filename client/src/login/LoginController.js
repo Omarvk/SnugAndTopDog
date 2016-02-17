@@ -5,19 +5,22 @@ angular.module("chatApp").controller("LoginController",
 function LoginController ($scope, $location, ChatResource) {
 	//$scope.user = "User Name";
 	$scope.errorMsg = "";
-	$scope.onToRegister = function onToRegister(){
+	/*$scope.onToRegister = function onToRegister(){
 		$location.path("/register");
-	};
-	$scope.onLogin = function onLogin() {
-		$scope.errorMsg = "wata";
-		ChatResource.login($scope.user, function(success){
-			if(!success){
-				$scope.errorMsg = "submit fails";
-			} else {
-				$scope.errorMsg = "tókst";
+	};*/
+	var RegisterUserOrLogin = function(success){
+		$scope.$apply(function(){
+			if(success){
+				$location.path("/roomlist");
+			}else{
+				$scope.errorMsg = "User name exists";
 			}
 		});
+	}
+	$scope.onLogin = function onLogin() {
+		ChatResource.addUser($scope.user, RegisterUserOrLogin);
 	};
+
 	/*$scope.$watch("user", function(newValue, oldValue) {
 		if(newValue.lenght > 3){
 
