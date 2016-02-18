@@ -31,7 +31,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	ChatResource.on("updatechat", function(room, msgHistory) {
 		if(room === $scope.name) {
 			//$scope.msgs = msgHistory;
-			var iD = 1;
+			//var iD = 1;
 			if(checkJoined) {
 				/*for(var msg in msgHistory){
 					msg.id = iD;

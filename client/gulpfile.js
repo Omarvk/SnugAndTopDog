@@ -8,20 +8,27 @@ var cors = function (req, res, next) {
   next();
 };
 */
+var server = {
+  host: 'localhost',
+  port: '8000'
+}
+
 gulp.task('webserver', function() {
   gulp.src('.')
     .pipe(webserver({
       //fallback: 'index.html',
+      //path: "/src",
       livereload: true,
-      directoryListing: true,
-      open: true,
-	  proxies:[{
-		source: '.',
-		target: 'http://localhost:8080'
-	  }]
+      directoryListing: false,
+      open: true
     }));
 });
 
+/*
+gulp.task('openbrowser', function() {
+  opn( 'http://' + server.host + ':' + server.port +"/src/index.html");
+});
+*/
 
 
 //gulp.task('bowerjs', function() {

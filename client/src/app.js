@@ -3,16 +3,16 @@
 angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routeProvider) {
 	$routeProvider
 	.when("/", {
-		templateUrl: "login/login.html",
+		templateUrl: "src/login/login.html",
 		controller: "LoginController"
 	}).when("/roomlist", {
-		templateUrl: "roomlist/roomlist.html",
+		templateUrl: "src/roomlist/roomlist.html",
 		controller: "RoomlistController"
 	}).when("/room/:name",{
-		templateUrl: "room/room.html",
+		templateUrl: "src/room/room.html",
 		controller: "RoomController"
 	}).when("/createroom", {
-		templateUrl: "createroom/createroom.html",
+		templateUrl: "src/createroom/createroom.html",
 		controller: "CreateRoomController"
 	});
 	
