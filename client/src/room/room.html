@@ -15,8 +15,8 @@
 				<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" size="25"></select>
 			</div>
 			<button ng-click="onSendPrvMsg()">Whisper</button>
-			<button ng-show="checkIfOp()" ng-click="onKick()">kick</button>
-			<button ng-show="checkIfOp()" ng-click="onBan()">ban</button>
+			<button ng-show="checkIfOp()" ng-click="onKick()">Kick</button>
+			<button ng-show="checkIfOp()" ng-click="onBan()">Ban</button>
 			<button ng-click="onLeaveRoom()">Leave</button>
 			<button ng-click="onDisc()">Disconnect</button>
 		</div>

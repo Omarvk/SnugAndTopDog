@@ -82,7 +82,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 		checkJoined = true;
 	}
 	var funToBeCalledIfFail = function() {
-		$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are not OP" });
+		$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You're not OP" });
 	}
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
 	$scope.onSendMsg = function onSendMsg() {
@@ -116,21 +116,21 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 			$scope.msgs.push({timestamp: new Date(), nick: "To " + user, message: $scope.newMsg });
 			ChatResource.sendPrvMsg({nick: user, message: $scope.newMsg });
 		}else {
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Dont send msg to your self" });
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You can't send a message to yourself." });
 		}
 	};
 	$scope.onKick = function onKick() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
 			ChatResource.kick({user: $scope.users[$scope.selectedUser - 1].name, room: $scope.name}, funToBeCalledIfFail);
 		}else {
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Kick your self?" });
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Kick yourself?" });
 		}
 	};
 	$scope.onBan = function onBan() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
 			ChatResource.ban({user: $scope.users[$scope.selectedUser - 1].name, room: $scope.name}, funToBeCalledIfFail);
 		}else {
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "ban your self?" });
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Ban yourself?" });
 		}
 	};
 	$scope.onLeaveRoom = function onLeaveRoom() {
