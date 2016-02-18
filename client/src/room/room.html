@@ -12,9 +12,11 @@
 		<div class="col-md-4">
 			<h4>Users in room:</h4>
 			<div class="userList">
-				<select ng-options="user.id as user.name for user in users" ng-model="selectedUser" size="25"></select>
+				<select ng-options="user.id as user.name for user in users track by user.id" ng-model="selectedUser" size="25"></select>
 			</div>
-			<button ng-click="onSendPrvMsg()">Send Private Msg</button>
+			<button ng-click="onSendPrvMsg()">whisper</button>
+			<button ng-show="checkIfOp()" ng-click="onKick()">kick</button>
+			<button ng-show="checkIfOp()" ng-click="onBan()">ban</button>
 			<button ng-click="onLeaveRoom()">Leave</button>
 			<button ng-click="onDisc()">Disconnect</button>
 		</div>

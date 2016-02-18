@@ -18,8 +18,7 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routePro
 	
 });
 
-angular.module("chatApp").run(function($rootScope, ChatResource) {
-	$rootScope.socket = io.connect('http://localhost:8080');
+angular.module("chatApp").run(function($rootScope, $location,  Auth, ChatResource) {
 	var user = "Kalli";
 	var hello = function(success){
 		if(success){
@@ -28,8 +27,29 @@ angular.module("chatApp").run(function($rootScope, ChatResource) {
 			console.log("new user plz");
 		}
 	}
+	$rootScope.$on('$routeChangeStart', function () {
+		if(!Auth.isLoggedIn()) {
+			$location.path("/");
+		}
+	});
 	ChatResource.addUser(user, hello);
 });
+
+angular.module("chatApp").factory('Auth', function() {
+	var user;
+
+	return{
+		setUser : function(aUser) {
+			if(aUser !== "") {
+				user = aUser;
+			}
+		},
+		isLoggedIn : function() {
+			return(user)? user : false;
+		}
+	}
+});
+
 
 //https://angular-ui.github.io/bootstrap/
 

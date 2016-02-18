@@ -1,16 +1,14 @@
 "use strict";
 
 angular.module("chatApp").controller("LoginController",
-["$scope", "$location", "ChatResource",
-function LoginController ($scope, $location, ChatResource) {
-	//$scope.user = "User Name";
+["$scope", "$location", "ChatResource", "Auth",
+function LoginController ($scope, $location, ChatResource, Auth) {
 	$scope.errorMsg = "";
-	/*$scope.onToRegister = function onToRegister(){
-		$location.path("/register");
-	};*/
+	$scope.user = "";
 	var RegisterUserOrLogin = function(success){
 		$scope.$apply(function(){
 			if(success){
+				Auth.setUser($scope.user);
 				$location.path("/roomlist");
 			}else{
 				$scope.errorMsg = "User name exists";

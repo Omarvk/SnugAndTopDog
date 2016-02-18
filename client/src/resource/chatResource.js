@@ -2,7 +2,7 @@
 
 angular.module("chatApp").factory("ChatResource",
 function ChatResource ($rootScope) {
-	var socket = io.connect('http://localhost:8080');// $rootScope.socket;
+	var socket = io.connect('http://localhost:8080');
 	return {
 		on: function on(eventName, callback) {
 			socket.on(eventName, function() {
@@ -47,6 +47,13 @@ function ChatResource ($rootScope) {
 		},
 		kick: function kick(data) {
 			socket.emit("kick", data, function(sucess){
+				if(!sucess) {
+					
+				}
+			});
+		},
+		ban: function ban(data) {
+			socket.emit("ban", data, function(sucess){
 				if(!sucess) {
 					
 				}
