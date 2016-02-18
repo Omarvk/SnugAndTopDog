@@ -30,11 +30,9 @@ function ChatResource ($rootScope) {
 		},
 		joinRoom: function joinRoom(obj, fun){
 			socket.emit("joinroom", obj, function(available, Reason){
-				if(!available) {
-					fun(available, Reason);
-				}
+				fun(available, Reason);
 			});
-			fun();
+			
 		},
 		sendMsg: function sendMsg(msgs) {
 			socket.emit("sendmsg", msgs);
