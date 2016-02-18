@@ -112,33 +112,21 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 			$scope.msgs.push({timestamp: new Date(), nick: "To " + user, message: $scope.newMsg, color: { color: "#FF1493" } });
 			ChatResource.sendPrvMsg({nick: user, message: $scope.newMsg });
 		}else {
-<<<<<<< HEAD
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You can't send a message to yourself." });
-=======
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Sending msg to your self. U have no frend ?", color: { color: "green" } });
->>>>>>> 7a0dd46163debc67185c400f52358889dae5a04b
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are sending a message to yourself. You have no friends?", color: { color: "green" } });
 		}
 	};
 	$scope.onKick = function onKick() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
 			ChatResource.kick({user: $scope.users[$scope.selectedUser - 1].name, room: $scope.name}, funToBeCalledIfFail);
 		}else {
-<<<<<<< HEAD
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Kick yourself?" });
-=======
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Kick your self?. Try hitting the ball first", color: { color: "green" } });
->>>>>>> 7a0dd46163debc67185c400f52358889dae5a04b
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Kicking yourself? Try hitting the ball first.", color: { color: "green" } });
 		}
 	};
 	$scope.onBan = function onBan() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
 			ChatResource.ban({user: $scope.users[$scope.selectedUser - 1].name, room: $scope.name}, funToBeCalledIfFail);
 		}else {
-<<<<<<< HEAD
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Ban yourself?" });
-=======
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Ban your self?. yeah nice try kid", color: { color: "green" } });
->>>>>>> 7a0dd46163debc67185c400f52358889dae5a04b
+			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "Banning yourself? Nice try, kid.", color: { color: "green" } });
 		}
 	};
 	$scope.onLeaveRoom = function onLeaveRoom() {

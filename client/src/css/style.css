@@ -80,3 +80,8 @@ select {
   background: #eee;
   width: 90%;
 }
+
+.roomList {
+  width: 750px;
+  margin: 0 auto;
+}

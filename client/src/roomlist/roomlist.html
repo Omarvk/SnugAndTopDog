@@ -1,7 +1,15 @@
 <div class="container">
-	<ul>
-		<li ng-repeat="room in roomlist track by room.id">
-			<a ng-href="#/room/{{room.name}}">{{room.name}}</a></li>
-	</ul>
-	<button ng-click="createRoom()">CreateRoom</button>
+	<div class="roomList">
+		<div class="panel panel-default">
+			<div class="panel-heading">Rooms currently open:</a></div>
+				<div class="panel-body">
+					<div class="list-group">
+						<a ng-repeat="room in roomlist track by room.id" ng-href="#/room/{{room.name}}" class="list-group-item">
+							<div>{{room.name}}</div>
+						</a>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-default" ng-click="createRoom()">Create room</button>
+	</div>
 </div>
