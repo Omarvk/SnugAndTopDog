@@ -16,16 +16,13 @@ function LoginController ($scope, $location, ChatResource, Auth) {
 		});
 	}
 	$scope.onLogin = function onLogin() {
-		ChatResource.addUser($scope.user, RegisterUserOrLogin);
-	};
-
-	/*$scope.$watch("user", function(newValue, oldValue) {
-		if(newValue.lenght > 3){
-
+		if($scope.user === undefined | $scope.user === "") {
+			$scope.erroMsg = "User must have Name";
+		}else {
+			ChatResource.addUser($scope.user, RegisterUserOrLogin);
 		}
-
-	});*/
-	
+		
+	};
 }]);
 
 

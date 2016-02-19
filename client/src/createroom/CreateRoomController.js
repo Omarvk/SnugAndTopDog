@@ -11,18 +11,17 @@ function CreateRoomController($scope, $location, ChatResource, $rootScope) {
 			}else{
 				$scope.erroMsg = reason;
 			}
-		});
 
-		/*ChatResource.on("roomlist", function(roomlist) {
-			console.log("listen to create");
-			$rootScope.$broadcast('roomUp', roomlist);
-					});*/
-		
+		});
 	}
 
 
 	$scope.onCreateRoom = function onCreateRoom() {
-		var obj = {room: $scope.room, pass: $scope.pw };
-		ChatResource.joinRoom(obj, funToBeCalledWhenCreateRoom);
+		if($scope.room === undefined | $scope.room === "") {
+			$scope.erroMsg = "Room must have Name";
+		}else {
+			var obj = {room: $scope.room, pass: $scope.pw };
+			ChatResource.joinRoom(obj, funToBeCalledWhenCreateRoom);
+		}
 	};
 }]);

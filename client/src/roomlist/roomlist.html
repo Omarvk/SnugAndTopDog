@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="roomList">
 		<div class="panel panel-default">
-			<div class="panel-heading">Rooms currently open:</a></div>
+			<div class="panel-heading">Rooms currently open: {{errorMsg}}</div>
 				<div class="panel-body">
 					<div class="list-group">
 						<a ng-repeat="room in roomlist track by room.id" ng-href="#/room/{{room.name}}" class="list-group-item">

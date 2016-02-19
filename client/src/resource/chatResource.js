@@ -3,6 +3,8 @@
 angular.module("chatApp").factory("ChatResource",
 function ChatResource ($rootScope) {
 	var socket = io.connect('http://localhost:8080');
+	var reason = "";
+	var roomName = "";
 	return {
 		on: function on(eventName, callback) {
 			socket.on(eventName, function() {
@@ -13,7 +15,6 @@ function ChatResource ($rootScope) {
 			});
 		},
 		getRoomList: function getRoomList() {
-			console.log("getRoomlist plz");
 			socket.emit("rooms");
 		},
 		addUser: function addUser(user, fun){
@@ -40,8 +41,14 @@ function ChatResource ($rootScope) {
 		},
 		leaveRoom: function leaveRoom(room) {
 			socket.emit("partroom", room);
-		}
-
+		},
+		setReason: function setReason(aReason, name) {
+			reason = aReason;
+			roomName = name;
+		},
+		getReason: function getReason(fun) {
+			fun(reason, roomName);
+		} 
 	};
 });
 

@@ -3,30 +3,31 @@
 angular.module("chatApp").controller("RoomlistController",
 ["$scope", "$location", "ChatResource", "Auth", "$rootScope",
 function RoomlistController($scope, $location, ChatResource, Auth) {
-	/*$scope.$watch(ChatResource.on("roomlist"), function (value, oldValue) {
-	    if(!value && oldValue && value !== "") {
-	    	console.log("dsad");
-	    }
-
-	    if(value) {
-	      	console.log("hehehe");
-	    }
-  	}, true);*/
 	$scope.roomlist = [];
-	/*$scope.$on('roomUp', function(roomlist) {
-		console.log("roomlist plz");
-		var obj = {};
-		var cId = 1;
-		for(var room in roomlist) {
-			if(roomlist.hasOwnProperty(room)) {
-				obj = {id: cId, name: room };
-				$scope.roomlist.push(obj);
-				cId++;
-			}				
+	/*var funToBeCalledWhenCreateRoom = function(sucess, reason) {
+		$scope.$apply(function() {
+			if(sucess) {
+				$location.path("/room/"+$scope.room);
+				ChatResource.getRoomList();
+			}else{
+				$scope.erroMsg = reason;
+			}
+
+		});
+	}*/
+	/*$scope.onCreateRoom = function onCreateRoom() {
+		var obj = {room: $scope.room, pass: $scope.pw };
+		ChatResource.joinRoom(obj, funToBeCalledWhenCreateRoom);
+	};*/
+	ChatResource.getRoomList();
+	var cannotJoin = function(reason, name) {
+		if(reason !== ""){
+			$scope.errorMsg ="you cannot join because "+ reason + " on " + name;
 		}
-	}) */
+	}
+	ChatResource.getReason(cannotJoin);
 	ChatResource.on("roomlist", function(roomlist) {
-		console.log("roomlist plz");
+		$scope.roomlist = [];
 		var obj = {};
 		var cId = 1;
 		for(var room in roomlist) {
@@ -39,8 +40,10 @@ function RoomlistController($scope, $location, ChatResource, Auth) {
 	});
 	$scope.createRoom = function createRoom() {
 		$location.path("/createroom")
+		//var obj = {room: $scope.room, pass: $scope.pw };
+		//ChatResource.joinRoom(obj, funToBeCalledWhenCreateRoom);
 	};
-	ChatResource.getRoomList();
+	
 }]);
 
 

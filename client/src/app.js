@@ -19,25 +19,15 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routePro
 });
 
 angular.module("chatApp").run(function($rootScope, $location,  Auth, ChatResource) {
-	var user = "Kalli";
-	var hello = function(success){
-		if(success){
-			console.log("login");
-		}else{
-			console.log("new user plz");
-		}
-	}
 	$rootScope.$on('$routeChangeStart', function () {
 		if(!Auth.isLoggedIn()) {
 			$location.path("/");
 		}
 	});
-	ChatResource.addUser(user, hello);
 });
 
 angular.module("chatApp").factory('Auth', function() {
 	var user;
-
 	return{
 		setUser : function(aUser) {
 			if(aUser !== "") {

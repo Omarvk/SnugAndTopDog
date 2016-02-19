@@ -5,7 +5,7 @@
 			<h4>{{topic}}</h4>
 			<hr>
 			<div class="messageList">
-				<p ng-repeat="msg in msgs track by msg.timestamp" ng-style="msg.color">{{msg.timestamp | date: "HH:mm"}} - {{msg.nick}}: {{msg.message}}</p>
+				<p ng-repeat="msg in msgs" ng-style="msg.color">{{msg.timestamp | date: "HH:mm"}} - {{msg.nick}}: {{msg.message}}</p>
 			</div>
 			<input ng-model="newMsg" type="text" class="form-control ng-valid ng-dirty" placeholder="Type message" ng-keypress="($event.charCode==13)?onSendMsg():return">
 		</div>

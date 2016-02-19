@@ -73,10 +73,11 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	});
 	var funcToBeCalledWhenRoomIsJoined = function(sucess, reason) {
 		if(sucess){
+			ChatResource.setReason("", "");
 			checkJoined = true;
 		}else{
+			ChatResource.setReason(reason, $routeParams.name);
 			$location.path("/roomlist");
-			alert(reason);
 		}
 	}
 	var funToBeCalledIfFail = function() {
@@ -84,10 +85,12 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	}
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
 	$scope.onSendMsg = function onSendMsg() {
-		obj.msg = $scope.newMsg;
-		obj.roomName = $scope.name;
-		ChatResource.sendMsg(obj);
-		$scope.newMsg = "";
+		if($scope.newMsg != "") {
+			obj.msg = $scope.newMsg;
+			obj.roomName = $scope.name;
+			ChatResource.sendMsg(obj);
+			$scope.newMsg = "";
+		}
 
 	};
 	$scope.checkIfOp = function checkIfOp() {
@@ -98,17 +101,19 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 		}
 	}
 	$scope.onSendPrvMsg = function onSendPrvMsg() {
-		var user = $scope.users[$scope.selectedUser - 1].name;
-		if(user.indexOf("@") === 0) {
-			user = user.substr(1);
+		if($scope.newMsg != "") {
+			var user = $scope.users[$scope.selectedUser - 1].name;
+			if(user.indexOf("@") === 0) {
+				user = user.substr(1);
+			}
+			if(thisUser !== user) {
+				$scope.msgs.push({timestamp: new Date(), nick: "To " + user, message: $scope.newMsg, color: { color: "#FF1493" } });
+				ChatResource.sendPrvMsg({nick: user, message: $scope.newMsg });
+			}else {
+				$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are sending a message to yourself. You have no friends?", color: { color: "green" } });
+			}
+			$scope.newMsg = "";
 		}
-		if(thisUser !== user) {
-			$scope.msgs.push({timestamp: new Date(), nick: "To " + user, message: $scope.newMsg, color: { color: "#FF1493" } });
-			ChatResource.sendPrvMsg({nick: user, message: $scope.newMsg });
-		}else {
-			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are sending a message to yourself. You have no friends?", color: { color: "green" } });
-		}
-		$scope.newMsg = "";
 	};
 	$scope.onKick = function onKick() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
