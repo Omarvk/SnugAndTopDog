@@ -1,40 +1,28 @@
 var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 var webserver = require('gulp-webserver');
-//var connect = require('gulp-connect');
-/*
-var cors = function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  next();
-};
-*/
-var server = {
-  host: 'localhost',
-  port: '8000'
-}
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+
+gulp.task('js', function () {
+   return gulp.src('src/**/*.js')
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
+      .pipe(uglify())
+      .pipe(concat('app.js'))
+      .pipe(gulp.dest('src/build'));
+});
+
 
 gulp.task('webserver', function() {
   gulp.src('.')
     .pipe(webserver({
       //fallback: 'index.html',
-      //path: "/src",
       livereload: true,
       directoryListing: false,
       open: true
     }));
 });
-
-/*
-gulp.task('openbrowser', function() {
-  opn( 'http://' + server.host + ':' + server.port +"/src/index.html");
-});
-*/
-
-
-//gulp.task('bowerjs', function() {
-//return gulp.src('../bower_components/*/')
-//.pipe(gulp.dest('bower_components/'))
-//});
 
 
 gulp.task('default', ['webserver']);

@@ -1,6 +1,8 @@
 "use strict";
 
-angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routeProvider) {
+angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(
+	["$routeProvider",
+	function($routeProvider) {
 	$routeProvider
 	.when("/", {
 		templateUrl: "src/login/login.html",
@@ -16,15 +18,17 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(function($routePro
 		controller: "CreateRoomController"
 	});
 	
-});
+}]);
 
-angular.module("chatApp").run(function($rootScope, $location,  Auth, ChatResource) {
+angular.module("chatApp").run(
+	["$rootScope", "$location", "Auth", "ChatResource",
+	function($rootScope, $location,  Auth, ChatResource) {
 	$rootScope.$on('$routeChangeStart', function () {
 		if(!Auth.isLoggedIn()) {
 			$location.path("/");
 		}
 	});
-});
+}]);
 
 angular.module("chatApp").factory('Auth', function() {
 	var user;

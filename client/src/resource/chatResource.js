@@ -1,6 +1,7 @@
 "use strict";
 
 angular.module("chatApp").factory("ChatResource",
+["$rootScope",
 function ChatResource ($rootScope) {
 	var socket = io.connect('http://localhost:8080');
 	var reason = "";
@@ -50,7 +51,7 @@ function ChatResource ($rootScope) {
 			fun(reason, roomName);
 		} 
 	};
-});
+}]);
 
 
 

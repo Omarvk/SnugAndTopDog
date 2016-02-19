@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("chatApp").controller("RoomlistController",
-["$scope", "$location", "ChatResource", "Auth", "$rootScope",
-function RoomlistController($scope, $location, ChatResource, Auth) {
+["$scope", "$location", "ChatResource",
+function RoomlistController($scope, $location, ChatResource) {
 	$scope.roomlist = [];
 	/*var funToBeCalledWhenCreateRoom = function(sucess, reason) {
 		$scope.$apply(function() {
