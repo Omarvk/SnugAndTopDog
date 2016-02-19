@@ -24,7 +24,7 @@ function RoomlistController($scope, $location, ChatResource, Auth) {
 		if(reason !== ""){
 			$scope.errorMsg ="you cannot join because "+ reason + " on " + name;
 		}
-	}
+	};
 	ChatResource.getReason(cannotJoin);
 	ChatResource.on("roomlist", function(roomlist) {
 		$scope.roomlist = [];
@@ -39,7 +39,7 @@ function RoomlistController($scope, $location, ChatResource, Auth) {
 		}
 	});
 	$scope.createRoom = function createRoom() {
-		$location.path("/createroom")
+		$location.path("/createroom");
 		//var obj = {room: $scope.room, pass: $scope.pw };
 		//ChatResource.joinRoom(obj, funToBeCalledWhenCreateRoom);
 	};

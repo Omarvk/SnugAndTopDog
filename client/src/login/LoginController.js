@@ -14,7 +14,7 @@ function LoginController ($scope, $location, ChatResource, Auth) {
 				$scope.errorMsg = "User name exists";
 			}
 		});
-	}
+	};
 	$scope.onLogin = function onLogin() {
 		if($scope.user === undefined | $scope.user === "") {
 			$scope.erroMsg = "User must have Name";

@@ -37,7 +37,7 @@ angular.module("chatApp").factory('Auth', function() {
 		isLoggedIn : function() {
 			return(user)? user : false;
 		}
-	}
+	};
 });
 
 

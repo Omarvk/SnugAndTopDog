@@ -13,7 +13,7 @@ function CreateRoomController($scope, $location, ChatResource, $rootScope) {
 			}
 
 		});
-	}
+	};
 
 
 	$scope.onCreateRoom = function onCreateRoom() {

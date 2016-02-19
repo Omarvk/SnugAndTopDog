@@ -79,13 +79,13 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 			ChatResource.setReason(reason, $routeParams.name);
 			$location.path("/roomlist");
 		}
-	}
+	};
 	var funToBeCalledIfFail = function() {
 		$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are not OP. Try asking for it OP PLZ", color: { color: "green" } });
-	}
+	};
 	ChatResource.joinRoom(obj, funcToBeCalledWhenRoomIsJoined);
 	$scope.onSendMsg = function onSendMsg() {
-		if($scope.newMsg != "") {
+		if($scope.newMsg !== "") {
 			obj.msg = $scope.newMsg;
 			obj.roomName = $scope.name;
 			ChatResource.sendMsg(obj);
@@ -99,9 +99,9 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 		}else {
 			return false;
 		}
-	}
+	};
 	$scope.onSendPrvMsg = function onSendPrvMsg() {
-		if($scope.newMsg != "") {
+		if($scope.newMsg !== "") {
 			var user = $scope.users[$scope.selectedUser - 1].name;
 			if(user.indexOf("@") === 0) {
 				user = user.substr(1);
