@@ -12,50 +12,31 @@ function ChatResource ($rootScope) {
 				});
 			});
 		},
-		getRoomList: function getRoomList(fun) {
+		getRoomList: function getRoomList() {
+			console.log("getRoomlist plz");
 			socket.emit("rooms");
-			socket.on("roomlist", function(data) {
-				fun(data);
-			});
 		},
 		addUser: function addUser(user, fun){
-			socket.emit("adduser", user, function(available){
+			socket.emit("adduser", user, function(available) {
 				fun(available);
 			});
 		},
-		createRoom: function createRoom(obj, fun){
-			socket.emit("joinroom", obj, function(available, Reason){
-				fun(available, Reason);
-			});
-		},
 		joinRoom: function joinRoom(obj, fun){
-			socket.emit("joinroom", obj, function(available, Reason){
+			socket.emit("joinroom", obj, function(available, Reason) {
 				fun(available, Reason);
 			});
-			
 		},
 		sendMsg: function sendMsg(msgs) {
 			socket.emit("sendmsg", msgs);
 		},
 		sendPrvMsg: function sendPrvMsg(data) {
-			socket.emit("privatemsg", data, function(sucess){
-				if(!sucess) {
-				}
-			});
+			socket.emit("privatemsg", data, function(bla){});
 		},
 		kick: function kick(data) {
-			socket.emit("kick", data, function(sucess){
-				if(!sucess) {
-					
-				}
-			});
+			socket.emit("kick", data, function(bla){});	
 		},
 		ban: function ban(data) {
-			socket.emit("ban", data, function(sucess){
-				if(!sucess) {
-					
-				}
-			});
+			socket.emit("ban", data, function(bla){});
 		},
 		leaveRoom: function leaveRoom(room) {
 			socket.emit("partroom", room);

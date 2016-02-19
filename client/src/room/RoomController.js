@@ -30,13 +30,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	});
 	ChatResource.on("updatechat", function(room, msgHistory) {
 		if(room === $scope.name) {
-			//$scope.msgs = msgHistory;
-			//var iD = 1;
 			if(checkJoined) {
-				/*for(var msg in msgHistory){
-					msg.id = iD;
-					iD++;
-				}*/
 				$scope.msgs = msgHistory;
 				checkJoined = false;
 			}else {
@@ -114,6 +108,7 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 		}else {
 			$scope.msgs.push({timestamp: new Date(), nick: $scope.name, message: "You are sending a message to yourself. You have no friends?", color: { color: "green" } });
 		}
+		$scope.newMsg = "";
 	};
 	$scope.onKick = function onKick() {
 		if("@"+thisUser !== $scope.users[$scope.selectedUser - 1].name) {
@@ -132,9 +127,6 @@ function RoomController($scope, $location, $routeParams, ChatResource) {
 	$scope.onLeaveRoom = function onLeaveRoom() {
 		ChatResource.leaveRoom($scope.name);
 		$location.path("/roomlist");
-	};
-	$scope.onDisc = function onDisc() {
-
 	};
 
 }]);

@@ -1,39 +1,46 @@
 "use strict";
 
 angular.module("chatApp").controller("RoomlistController",
-["$scope", "$location", "ChatResource", "Auth",
+["$scope", "$location", "ChatResource", "Auth", "$rootScope",
 function RoomlistController($scope, $location, ChatResource, Auth) {
-	/*$scope.$watch(Auth.isLoggedIn, function (value, oldValue) {
-
+	/*$scope.$watch(ChatResource.on("roomlist"), function (value, oldValue) {
 	    if(!value && oldValue && value !== "") {
-	    	console.log("Disconnect");
-	    	$location.path('/');
+	    	console.log("dsad");
 	    }
 
 	    if(value) {
-	      	console.log("Connect");
-	      //Do something when the user is connected
+	      	console.log("hehehe");
 	    }
   	}, true);*/
-	var funcToBeCalledWhenRoomlistChanges = function(roomlist){
-		$scope.$apply(function(){
-			$scope.roomlist = [];
-			var obj = {};
-			var cId = 1;
-			for(var room in roomlist){
-				if(roomlist.hasOwnProperty(room)){
-					obj = {id: cId, name: room };
-					$scope.roomlist.push(obj);
-					cId++;
-				}				
-			}
-		});
-		
-	}
-	$scope.createRoom = function createRoom(){
+	$scope.roomlist = [];
+	/*$scope.$on('roomUp', function(roomlist) {
+		console.log("roomlist plz");
+		var obj = {};
+		var cId = 1;
+		for(var room in roomlist) {
+			if(roomlist.hasOwnProperty(room)) {
+				obj = {id: cId, name: room };
+				$scope.roomlist.push(obj);
+				cId++;
+			}				
+		}
+	}) */
+	ChatResource.on("roomlist", function(roomlist) {
+		console.log("roomlist plz");
+		var obj = {};
+		var cId = 1;
+		for(var room in roomlist) {
+			if(roomlist.hasOwnProperty(room)) {
+				obj = {id: cId, name: room };
+				$scope.roomlist.push(obj);
+				cId++;
+			}				
+		}
+	});
+	$scope.createRoom = function createRoom() {
 		$location.path("/createroom")
 	};
-	ChatResource.getRoomList(funcToBeCalledWhenRoomlistChanges);
+	ChatResource.getRoomList();
 }]);
 
 
