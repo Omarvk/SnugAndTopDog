@@ -49,7 +49,6 @@ Skilaboð frá herbergi(þess hver hefur joina, partað eða annað) eru sýnd m
 --------------------------------------------------------
 concat
 keyri gulp js í client folder.
-concat fileinn(build/app.js) virðist ekki virka þar sem hann þjabbaði öllum parameters names í einn character og fatta þá ekki lengur hvaða parameter er hver.
 --------------------------------------------------------
 jshint
 keyri grunt í client folder.

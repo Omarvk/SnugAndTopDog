@@ -30,7 +30,9 @@ angular.module("chatApp").run(
 	});
 }]);
 // for checking if user is logged inn
-angular.module("chatApp").factory('Auth', function() {
+angular.module("chatApp").factory('Auth', 
+	[
+	function() {
 	var user;
 	return{
 		setUser : function(aUser) {
@@ -42,6 +44,6 @@ angular.module("chatApp").factory('Auth', function() {
 			return(user)? user : false;
 		}
 	};
-});
+}]);
 
 
