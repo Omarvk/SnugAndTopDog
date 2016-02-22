@@ -29,7 +29,7 @@ angular.module("chatApp").run(
 		}
 	});
 }]);
-
+// for checking if user is logged inn
 angular.module("chatApp").factory('Auth', function() {
 	var user;
 	return{
@@ -44,6 +44,4 @@ angular.module("chatApp").factory('Auth', function() {
 	};
 });
 
-
-//https://angular-ui.github.io/bootstrap/
 

@@ -15,7 +15,6 @@ function CreateRoomController($scope, $location, ChatResource, $rootScope) {
 		});
 	};
 
-
 	$scope.onCreateRoom = function onCreateRoom() {
 		if($scope.room === undefined | $scope.room === "") {
 			$scope.erroMsg = "Room must have Name";

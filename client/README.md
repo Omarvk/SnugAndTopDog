@@ -2,6 +2,7 @@ bower install angular --save
 bower install angular-animate --save
 bower install angular-route --save
 bower install angular-bootstrap --save
+bower install jquery 
 
 npm install gulp --save
 npm install gulp-webserve --save-dev 
