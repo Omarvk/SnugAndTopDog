@@ -1,55 +1,58 @@
-install þessu fyrir client
+Installa skal þetta fyrir client:
 bower install angular --save
 bower install angular-animate --save
 bower install angular-route --save-dev
 bower install angular-bootstrap --save
 bower install jquery 
 
-fyrir client server
+Fyrir client server:
 npm install gulp --save
 npm install gulp-webserve --save-dev 
 
-fyrir concat
+Fyrir concat:
 npm install gulp-uglify --save-dev 
 npm install gulp-concat --save-dev 
 
-fyrir jshint
+Fyrir jshint:
 npm install grunt --save
 npm install grunt-contrib-jshint --save-dev
 
 --------------------------------------------------------
 Server
-server var ekki snertur
+Server var ekki snertur
 --------------------------------------------------------
-hlutir sem voru ekki útfærðir 
+Hlutir sem voru ekki útfærðir:
 
-diconnect var ekki krafa gerð til og það þurfti að breyta server til að útfæra það sem diconnect er ban orð í socket
+disconnect, ekki var gerð krafa um það og það þyrfti að breyta server til að útfæra það, þar sem disconnect er ban orð í socket.
 op
 deop
 setpassword
 removepassword
 settopic
-unban.
+unban
 
 --------------------------------------------------------
-Starta
-keyri skipuna gulp í client folderiunm sem keyri þá client serverinn
-Og hefur auðvita kveikt á server(chatserver.js).
+Til að starta:
+Með serverinn (chatserver.js) í gangi og keyrið skipunina "gulp" í client folderinum, sem keyrir þá client serverinn.
 --------------------------------------------------------
 Virkni
 
-loggar inn þar sem fyrsta síðan er login. þar ættiru að sá roomlist
-sem þú annahvort velur room á listanum eða velur að búa til nýtt room.
+Upphafssíðan er innskráningarsíða, þar sem notendanafn er slegið inn.
+Næsta skjámynd er listi yfir opin herbergi, einnig er þar hnappur til að búa til nýtt herbergi.
 
-í room geturu skrifað skilaboð með að smella á enter eftir þú hefur skrifa það í input gluggann
-eða sendir einkaskilaboð á user innas þess rooms með að smella á hann í user lista og skrifa skilaboða í sama input glugga sem er notaður fyrir roomchattið og íttir svo á whipsers. Svo getur user farið úr roomið með því að ítta á leava takkann. Sem Creater á herbergi verðu sá notandi Op sem er þá sýndur á userlista með @merki fyrir framan nafn sá notandi fær að sá möguleikann á að kicka og banna user sem hann velur á user lista.
+Þegar inn í herbergi er komið er hægt að spjalla með því að skrifa skilaboð og smella á "Enter".
+Til að senda einkaskilaboð á annan notanda eru skilaboðin skrifuð eins og venjulega,
+nema í stað fyrir að smella á "Enter" er smellt á nafn hans og svo smellt á "Whisper".
+Hægt er að fara út úr herberginu með því að smella á "Leave" hnappinn.
+Þegar herbergi er búið til verður sá sem bjó það til sjálfkrafa "op" á því herbergi, sýnt með "@" merki fyrir framan nafn hans.
+Sá notandi "op" sér hann tvo takka til viðbótar, "Kick" og "Ban", til að fjarlægja aðra notendur úr herberginu og koma í veg fyrir að þeir snúi aftur.
 
-Skilaboð frá herbergi(þess hver hefur joina, partað eða annað) eru sýnd með grænum lit en einkaskilaboð með bleikum.
+Sjálfvirk skilaboð í herbergi (t.d. notandi bætist við eða fer) eru sýnd með grænum lit meðan einkaskilaboð eru sýnd með bleikum lit.
 
 --------------------------------------------------------
-concat
-keyri gulp js í client folder.
+Concat:
+Keyra gulp js í client folder.
 --------------------------------------------------------
-jshint
-keyri grunt í client folder.
+jshint:
+Keyra grunt í client folder.
 
