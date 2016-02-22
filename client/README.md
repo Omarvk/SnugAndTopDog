@@ -19,7 +19,6 @@ npm install grunt-contrib-jshint --save-dev
 
 --------------------------------------------------------
 Server
-
 server var ekki snertur
 --------------------------------------------------------
 hlutir sem voru ekki útfærðir 
@@ -30,12 +29,11 @@ deop
 setpassword
 removepassword
 settopic
-unban
+unban.
 
 --------------------------------------------------------
 Starta
-
-keyri skipuna gulp í client folderiunm sem keyri þá client serverinn.
+keyri skipuna gulp í client folderiunm sem keyri þá client serverinn
 Og hefur auðvita kveikt á server(chatserver.js).
 --------------------------------------------------------
 Virkni
@@ -49,5 +47,10 @@ eða sendir einkaskilaboð á user innas þess rooms með að smella á hann í 
 Skilaboð frá herbergi(þess hver hefur joina, partað eða annað) eru sýnd með grænum lit en einkaskilaboð með bleikum.
 
 --------------------------------------------------------
+concat
+keyri gulp js í client folder.
 concat fileinn(build/app.js) virðist ekki virka þar sem hann þjabbaði öllum parameters names í einn character og fatta þá ekki lengur hvaða parameter er hver.
+--------------------------------------------------------
+jshint
+keyri grunt í client folder.
 
