@@ -2,7 +2,7 @@ module.exports = function ( grunt ) {
  grunt.loadNpmTasks('grunt-contrib-jshint');
  var taskConfig = {
    jshint: {
-   	src: ['src/**/*.js', '!**/jquery.js'],
+   	src: ['src/**/*.js', '!**/build/app.js'],
  	gruntfile: ['Gruntfile.js'],
  	options: {
 		curly:  true,
