@@ -19,7 +19,7 @@ npm install grunt-contrib-jshint --save-dev
 
 --------------------------------------------------------
 Server
-Server var ekki snertur
+Server var ekki snertur.
 --------------------------------------------------------
 Hlutir sem voru ekki útfærðir:
 
@@ -35,7 +35,7 @@ unban
 Til að starta:
 Með serverinn (chatserver.js) í gangi og keyrið skipunina "gulp" í client folderinum, sem keyrir þá client serverinn.
 --------------------------------------------------------
-Virkni
+Virkni:
 
 Upphafssíðan er innskráningarsíða, þar sem notendanafn er slegið inn.
 Næsta skjámynd er listi yfir opin herbergi, einnig er þar hnappur til að búa til nýtt herbergi.
@@ -56,3 +56,4 @@ Keyra gulp js í client folder.
 jshint:
 Keyra grunt í client folder.
 
+Við notuðumst við Chrome vafrann við þróun verkefnis en prófuðum síðuna í Firefox og Edge vöfrunum.
